@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="validateaddressusps.client/validateaddressusps.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="ValidateAddressUSPS.Server/ValidateAddressUSPS.Server.csproj" />
+</Solution>
