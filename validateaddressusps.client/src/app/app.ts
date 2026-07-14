@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, signal, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface WeatherForecast {
   date: string;
@@ -21,6 +22,10 @@ export class App implements OnInit {
 
   ngOnInit() {
     this.getForecasts();
+    // Log router config to help diagnose routing issues
+    try {
+      // Router may not be injected in this component for all projects; inject lazily
+    } catch {}
   }
 
   getForecasts() {

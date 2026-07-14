@@ -1,0 +1,35 @@
+<h2>USPS Address Validation</h2>
+
+<form [formGroup]="form" (ngSubmit)="validate()">
+  <div>
+    <label>Address 1</label>
+    <input formControlName="address1" />
+  </div>
+
+  <div>
+    <label>Address 2</label>
+    <input formControlName="address2" />
+  </div>
+
+  <div>
+    <label>City</label>
+    <input formControlName="city" />
+  </div>
+
+  <div>
+    <label>State</label>
+    <input formControlName="state" />
+  </div>
+
+  <div>
+    <label>Zip 5</label>
+    <input formControlName="zip5" />
+  </div>
+
+  <button type="submit">Validate Address</button>
+</form>
+
+<div *ngIf="result">
+  <h3>USPS Result</h3>
+  <pre>{{ result | json }}</pre>
+</div>
