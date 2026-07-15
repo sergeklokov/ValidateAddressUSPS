@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="ReadMe.md" />
+  </Folder>
   <Project Path="validateaddressusps.client/validateaddressusps.client.esproj">
     <Build />
     <Deploy />
