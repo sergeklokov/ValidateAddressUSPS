@@ -1,14 +1,24 @@
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using ValidateAddressUSPS.Server.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Add OpenAPI / Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure USPS options from configuration
+builder.Services.Configure<UspsOptions>(builder.Configuration.GetSection("Usps"));
+
+// Register a named HttpClient for USPS
+builder.Services.AddHttpClient("usps", client =>
+{
+    client.BaseAddress = new Uri("https://secure.shippingapis.com/");
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
 
 var app = builder.Build();
 

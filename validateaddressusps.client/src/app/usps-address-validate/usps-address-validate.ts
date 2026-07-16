@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AddressDto } from '../models/address-dto';
 import { UspsService } from '../usps.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-usps-address-validate',
@@ -27,9 +29,14 @@ export class UspsAddressValidateComponent {
   validate() {
     const address: AddressDto = this.form.value;
 
-    this.uspsService.validateAddress(address).subscribe(response => {
-      this.result = response;
-    });
-  }
+    this.uspsService.validateAddress(address).subscribe((response) => {
+        console.log('Success', response);
+      // handle success
+      },
+      (err: HttpErrorResponse) => {
+        console.error('Validate error', err);
+        // handle error (404 etc.)
+      },);
+  };
 }
 
